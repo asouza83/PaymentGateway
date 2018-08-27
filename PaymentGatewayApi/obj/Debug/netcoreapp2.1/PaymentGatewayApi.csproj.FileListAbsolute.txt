@@ -1,0 +1,14 @@
+C:\Users\Alberto\source\repos\PaymentGatewayApi\PaymentGatewayApi\bin\Debug\netcoreapp2.1\PaymentGatewayApi.deps.json
+C:\Users\Alberto\source\repos\PaymentGatewayApi\PaymentGatewayApi\bin\Debug\netcoreapp2.1\PaymentGatewayApi.runtimeconfig.json
+C:\Users\Alberto\source\repos\PaymentGatewayApi\PaymentGatewayApi\bin\Debug\netcoreapp2.1\PaymentGatewayApi.runtimeconfig.dev.json
+C:\Users\Alberto\source\repos\PaymentGatewayApi\PaymentGatewayApi\bin\Debug\netcoreapp2.1\PaymentGatewayApi.dll
+C:\Users\Alberto\source\repos\PaymentGatewayApi\PaymentGatewayApi\bin\Debug\netcoreapp2.1\PaymentGatewayApi.pdb
+C:\Users\Alberto\source\repos\PaymentGatewayApi\PaymentGatewayApi\obj\Debug\netcoreapp2.1\PaymentGatewayApi.csprojAssemblyReference.cache
+C:\Users\Alberto\source\repos\PaymentGatewayApi\PaymentGatewayApi\obj\Debug\netcoreapp2.1\PaymentGatewayApi.csproj.CoreCompileInputs.cache
+C:\Users\Alberto\source\repos\PaymentGatewayApi\PaymentGatewayApi\obj\Debug\netcoreapp2.1\PaymentGatewayApi.RazorAssemblyInfo.cache
+C:\Users\Alberto\source\repos\PaymentGatewayApi\PaymentGatewayApi\obj\Debug\netcoreapp2.1\PaymentGatewayApi.RazorAssemblyInfo.cs
+C:\Users\Alberto\source\repos\PaymentGatewayApi\PaymentGatewayApi\obj\Debug\netcoreapp2.1\PaymentGatewayApi.AssemblyInfoInputs.cache
+C:\Users\Alberto\source\repos\PaymentGatewayApi\PaymentGatewayApi\obj\Debug\netcoreapp2.1\PaymentGatewayApi.AssemblyInfo.cs
+C:\Users\Alberto\source\repos\PaymentGatewayApi\PaymentGatewayApi\obj\Debug\netcoreapp2.1\PaymentGatewayApi.RazorTargetAssemblyInfo.cache
+C:\Users\Alberto\source\repos\PaymentGatewayApi\PaymentGatewayApi\obj\Debug\netcoreapp2.1\PaymentGatewayApi.dll
+C:\Users\Alberto\source\repos\PaymentGatewayApi\PaymentGatewayApi\obj\Debug\netcoreapp2.1\PaymentGatewayApi.pdb

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Stone.Gateway.Client</id>
+    <version>1.2.1</version>
+    <authors>Stone</authors>
+    <owners>Stone</owners>
+    <projectUrl>https://github.com/stone-pagamentos/stone-ecommerce-dotnet</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Stone Gateway Client</description>
+    <releaseNotes>
+Implements Create, Update and Delete methods in CreditCard resource.
+Implements Get and Create methods in Buyer resource.
+    </releaseNotes>
+    <copyright>Stone Payments 2015</copyright>
+    <tags>Stone Pagamentos Payments ecommerce Credit Card Payment Boleto Gateway Transaction</tags>
+  </metadata>
+</package>

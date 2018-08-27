@@ -1,0 +1,814 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CieloEcommerce</name>
+    </assembly>
+    <members>
+        <member name="T:CieloEcommerce.CieloException">
+            <summary>
+            Classe para captura do erro no XML
+            </summary>
+        </member>
+        <member name="P:CieloEcommerce.CieloException.Code">
+            <summary>
+            Código do erro
+            </summary>
+        </member>
+        <member name="M:CieloEcommerce.CieloException.#ctor">
+            <summary>
+            Construtor
+            </summary>
+        </member>
+        <member name="M:CieloEcommerce.CieloException.#ctor(System.String,System.String,System.Exception)">
+            <summary>
+            Construtor
+            </summary>
+            <param name="message">Mensagem de erro</param>
+            <param name="erroCode">Código do erro</param>
+            <param name="innerException">Exceção</param>
+        </member>
+        <member name="T:CieloEcommerce.Cielo">
+            <summary>
+            Integração com o Webservice 1.5 da Cielo; esse participante faz um
+            papel de facilitador para a construção de todos os participantes
+            importantes para a integração. Através de factory methods, é possível
+            criar as instâncias pré-configuradas com os parâmetros mínimos necessários
+            para a execução das operações.
+            </summary>
+        </member>
+        <member name="F:CieloEcommerce.Cielo.VERSION">
+            <summary>
+            Versão interna do webservice
+            </summary>
+        </member>
+        <member name="F:CieloEcommerce.Cielo.PRODUCTION">
+            <summary>
+            Endpoint de produção
+            </summary>
+        </member>
+        <member name="F:CieloEcommerce.Cielo.TEST">
+            <summary>
+            Endpoint de testes
+            </summary>
+        </member>
+        <member name="M:CieloEcommerce.Cielo.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Constroi a instância de Cielo definindo o Merchant ID, Merchant Key e
+            o endpoint para onde serão enviadas as requisições
+            </summary>
+            <param name="id">Identifier.</param>
+            <param name="key">Key.</param>
+            <param name="endpoint">Endpoint.</param>
+        </member>
+        <member name="M:CieloEcommerce.Cielo.holder(System.String)">
+            <summary>
+            Cria uma instância de Cielo.Holder, que representa o portador de um cartão,
+            apenas definindo o token previamente gerado.
+            </summary>
+            <param name="token">Token.</param>
+        </member>
+        <member name="M:CieloEcommerce.Cielo.holder(System.String,System.String,System.String,System.String,CieloEcommerce.Holder.CVV)">
+            <summary>
+            Cria uma instância de Cielo.Holder, que representa o portador de um cartão,
+            apenas definindo o número do cartão, ano e mês de expiração, código de segurança e
+            o indicador do código de segurança.
+            </summary>
+            <param name="number">Número do cartão</param>
+            <param name="expirationYear">Ano de expiração</param>
+            <param name="expirationMonth">Mês de expiração</param>
+            <param name="cvv">CVV - Código de segurança do verso do cartão</param>
+            <param name="indicator">Indicador de segurança; veja Cielo.Holder.CVV</param>
+        </member>
+        <member name="M:CieloEcommerce.Cielo.order(System.String,System.Int32,System.String,System.Int32)">
+            <summary>
+            Cria uma instância de Cielo.Order, que representa os dados do pedido,
+            definindo o número do pedido, valor total do pedido, data do pedido e moeda.
+            </summary>
+            <param name="number">Número do pedido</param>
+            <param name="total">Total do pedido</param>
+            <param name="dateTime">Data e hora do pedido</param>
+            <param name="currency">Moeda do pedido - 986 para BRL</param>
+        </member>
+        <member name="M:CieloEcommerce.Cielo.order(System.String,System.Int32,System.String)">
+            <summary>
+            Cria uma instância de Cielo.Order, que representa os dados do pedido,
+            definindo o número do pedido, valor total do pedido, data do pedido. A moeda será
+            configurada por padrâo para 986 - BRL.
+            </summary>
+            <param name="number">Número do pedido</param>
+            <param name="total">Total do pedido</param>
+            <param name="dateTime">Data e hora do pedido</param>
+        </member>
+        <member name="M:CieloEcommerce.Cielo.order(System.String,System.Int32)">
+            <summary>
+            Cria uma instância de Cielo.Order, que representa os dados do pedido,
+            definindo o número do pedido e valor total. A data será configurada como a data
+            atual e a moeda será configurada por padrâo para 986 - BRL.
+            </summary>
+            <param name="number">Número do pedido</param>
+            <param name="total">Total do pedido</param>
+        </member>
+        <member name="M:CieloEcommerce.Cielo.paymentMethod(System.String)">
+            <summary>
+            Cria uma instância de Cielo.PaymentMethod, que representa a forma de pagamento,
+            definindo o emissor do cartão.
+            </summary>
+            <param name="issuer">O emissor do cartão - VISA, MASTERCARD, AMEX, etc</param>
+        </member>
+        <member name="M:CieloEcommerce.Cielo.paymentMethod(System.String,System.String)">
+            <summary>
+            Cria uma instância de Cielo.PaymentMethod, que representa a forma de pagamento,
+            definindo o emissor do cartão e o produto Cielo utilizado.
+            </summary>
+            <param name="issuer">O emissor do cartão - VISA, MASTERCARD, AMEX, etc</param>
+            <param name="product">O produto utilizado na transação - crédito, débito, parcelado, etc</param>
+        </member>
+        <member name="M:CieloEcommerce.Cielo.paymentMethod(System.String,System.String,System.Int32)">
+            <summary>
+            Cria uma instância de Cielo.PaymentMethod, que representa a forma de pagamento,
+            definindo o emissor do cartão, o produto Cielo utilizado e o número de parcelas.
+            </summary>
+            <param name="issuer">O emissor do cartão - VISA, MASTERCARD, AMEX, etc</param>
+            <param name="product">O produto utilizado na transação - crédito, débito, parcelado, etc</param>
+            <param name="installments">Quantidade de parcelas</param>
+        </member>
+        <member name="M:CieloEcommerce.Cielo.transaction(CieloEcommerce.Holder,CieloEcommerce.Order,CieloEcommerce.PaymentMethod,System.String,CieloEcommerce.Transaction.AuthorizationMethod,System.Boolean)">
+            <summary>
+            Cria uma instância de Transaction pré-configurada
+            </summary>
+            <param name="holder">Detalhes do portador do cartão</param>
+            <param name="order">Detalhes do pedido</param>
+            <param name="paymentMethod">Forma de pagamento</param>
+            <param name="returnURL">URL de retorno</param>
+            <param name="authorize">Método de autorização</param>
+            <param name="capture">Determina se a transação deverá ser capturada automaticamente</param>
+            <returns>>Uma instância de Transaction</returns>
+        </member>
+        <member name="M:CieloEcommerce.Cielo.authorizationRequest(CieloEcommerce.Holder,CieloEcommerce.Order,CieloEcommerce.PaymentMethod,System.String,CieloEcommerce.Transaction.AuthorizationMethod,System.Boolean)">
+            <summary>
+            Cria uma transação com os dados informados e envia uma requisição-autorizacao-tid para
+            o webservice Cielo.
+            </summary>
+            <returns>A transação retornada pela Cielo e seu respectivo status</returns>
+            <param name="holder">Portador do cartão</param>
+            <param name="order">Dados do pedido</param>
+            <param name="paymentMethod">Método de pagamento</param>
+            <param name="returnURL">URL de retorno</param>
+            <param name="authorize">Método de autorização</param>
+            <param name="capture">Define se a transação deve ser capturada automaticamente</param>
+        </member>
+        <member name="M:CieloEcommerce.Cielo.authorizationRequest(CieloEcommerce.Transaction)">
+            <summary>
+            Envia uma requisição-autorizacao-tid para o webservice Cielo para que a transação
+            seja autorizada segundo as configurações previamente feitas.
+            </summary>
+            <returns>A transação retornada pela Cielo e seu respectivo status</returns>
+            <param name="transaction">A transação previamente configurada</param>
+        </member>
+        <member name="M:CieloEcommerce.Cielo.cancellationRequest(CieloEcommerce.Holder,CieloEcommerce.Order,CieloEcommerce.PaymentMethod,System.String,CieloEcommerce.Transaction.AuthorizationMethod,System.Boolean,System.Int32)">
+            <summary>
+            Envia uma requisição-cancelamento para o webservice Cielo para cancelar uma transação
+            </summary>
+            <returns>A transação com o respectivo status retornada pela Cielo</returns>
+            <param name="holder">Portador do cartão</param>
+            <param name="order">Dados do pedido</param>
+            <param name="paymentMethod">Método de pagamento</param>
+            <param name="returnURL">URL de retorno</param>
+            <param name="authorize">Método de autorização</param>
+            <param name="capture">Se a transação foi capturada</param>
+            <param name="total">Total do cancelamento</param>
+        </member>
+        <member name="M:CieloEcommerce.Cielo.cancellationRequest(CieloEcommerce.Transaction)">
+            <summary>
+            Envia uma requisição-cancelamento para o webservice Cielo para cancelar uma transação
+            </summary>
+            <returns>A transação com o respectivo status retornada pela Cielo</returns>
+            <param name="transaction">A transação que será cancelada</param>
+        </member>
+        <member name="M:CieloEcommerce.Cielo.cancellationRequest(CieloEcommerce.Transaction,System.Int32)">
+            <summary>
+            Envia uma requisição-cancelamento para o webservice Cielo para cancelar uma transação
+            </summary>
+            <returns>A transação com o respectivo status retornada pela Cielo</returns>
+            <param name="transaction">A transação que será cancelada</param>
+            <param name="total">Total do cancelamento</param>
+        </member>
+        <member name="M:CieloEcommerce.Cielo.cancellationRequest(System.String,System.Int32,CieloEcommerce.Merchant)">
+            <summary>
+            Envia uma requisição-cancelamento para o webservice Cielo para cancelar uma transação
+            </summary>
+            <param name="transaction">A transação que será cancelada</param>
+            <param name="total">Total do cancelamento</param>
+            <param name="tid">todo: describe tid parameter on cancellationRequest</param>
+            <param name="merchant">todo: describe merchant parameter on cancellationRequest</param>
+            <returns>A transação com o respectivo status retornada pela Cielo</returns>
+        </member>
+        <member name="M:CieloEcommerce.Cielo.captureRequest(CieloEcommerce.Holder,CieloEcommerce.Order,CieloEcommerce.PaymentMethod,System.String,CieloEcommerce.Transaction.AuthorizationMethod,System.Boolean,System.Int32)">
+            <summary>
+            Envia uma requisição-captura para o webservice Cielo para capturar uma transação
+            previamente autorizada
+            </summary>
+            <returns>A transação com o respectivo status retornada pela Cielo</returns>
+            <param name="holder">Portador do cartão</param>
+            <param name="order">Dados do pedido</param>
+            <param name="paymentMethod">Método de pagamento</param>
+            <param name="returnURL">URL de retorno</param>
+            <param name="authorize">Método de autorização</param>
+            <param name="capture">Se a transação foi capturada</param>
+            <param name="total">Total da captura</param>
+        </member>
+        <member name="M:CieloEcommerce.Cielo.captureRequest(CieloEcommerce.Transaction)">
+            <summary>
+            Envia uma requisição-captura para o webservice Cielo para capturar uma transação
+            previamente autorizada
+            </summary>
+            <returns>A transação com o respectivo status retornada pela Cielo</returns>
+            <param name="transaction">A transação que deverá ser capturada</param>
+        </member>
+        <member name="M:CieloEcommerce.Cielo.captureRequest(CieloEcommerce.Transaction,System.Int32)">
+            <summary>
+            Envia uma requisição-captura para o webservice Cielo para capturar uma transação
+            previamente autorizada
+            </summary>
+            <returns>A transação com o respectivo status retornada pela Cielo</returns>
+            <param name="transaction">A transação que deverá ser capturada</param>
+            <param name="total">O valor que deverá ser capturado</param>
+        </member>
+        <member name="M:CieloEcommerce.Cielo.tokenRequest(CieloEcommerce.Transaction)">
+            <summary>
+            Envia uma requisição-token para gerar um token para um cartão de crédito.
+            </summary>
+            <returns>O Token retornado pela Cielo</returns>
+            <param name="transaction">A transação que contém os dados do portador</param>
+        </member>
+        <member name="M:CieloEcommerce.Cielo.tokenRequest(CieloEcommerce.Holder,CieloEcommerce.Merchant)">
+            <summary>
+            Envia uma requisição-token para gerar um token para um cartão de crédito.
+            </summary>
+            <param name="transaction">A transação que contém os dados do portador</param>
+            <param name="holder">todo: describe holder parameter on tokenRequest</param>
+            <param name="merchant">todo: describe merchant parameter on tokenRequest</param>
+            <returns>O Token retornado pela Cielo</returns>
+        </member>
+        <member name="M:CieloEcommerce.Cielo.transactionRequest(CieloEcommerce.Holder,CieloEcommerce.Order,CieloEcommerce.PaymentMethod,System.String,CieloEcommerce.Transaction.AuthorizationMethod,System.Boolean)">
+            <summary>
+            Envia uma requisição-transacao com os dados especificados
+            </summary>
+            <param name="holder">Detalhes do portador do cartão</param>
+            <param name="order">Detalhes do pedido</param>
+            <param name="paymentMethod">Forma de pagamento</param>
+            <param name="returnURL">URL de retorno</param>
+            <param name="authorize">Método de autorização</param>
+            <param name="capture">Determina se a transação deverá ser capturada automaticamente</param>
+            <returns>>Uma instância de Transaction com a resposta da requisição</returns>
+        </member>
+        <member name="M:CieloEcommerce.Cielo.transactionRequest(CieloEcommerce.Transaction)">
+            <summary>
+            Envia uma requisição-transacao com os dados especificados
+            </summary>
+            <param name="transaction">Detalhes da transação</param>
+            <returns>>Uma instância de Transaction com a resposta da requisição</returns>
+        </member>
+        <member name="M:CieloEcommerce.Cielo.consultationRequest(System.String)">
+            <summary>
+            Envia uma requisição de consulta
+            </summary>
+            <param name="tid">TID da operação</param>        
+            <returns>Uma instância de Transaction com a resposta da requisição</returns>
+        </member>
+        <member name="T:CieloEcommerce.Holder">
+            <summary>
+            Representação do portador de um cartão
+            </summary>
+        </member>
+        <member name="T:CieloEcommerce.Holder.CVV">
+            <summary>
+            Detalhe sobre o código CVV do cartão
+            </summary>
+        </member>
+        <member name="F:CieloEcommerce.Holder.CVV.NOT_INFORMED">
+            <summary>
+            O CVV não foi informado
+            </summary>
+        </member>
+        <member name="F:CieloEcommerce.Holder.CVV.INFORMED">
+            <summary>
+            O CVV foi informado
+            </summary>
+        </member>
+        <member name="F:CieloEcommerce.Holder.CVV.UNREADABLE">
+            <summary>
+            O CVV não estava legível
+            </summary>
+        </member>
+        <member name="F:CieloEcommerce.Holder.CVV.NONEXISTENT">
+            <summary>
+            Não havia um CVV
+            </summary>
+        </member>
+        <member name="P:CieloEcommerce.Holder.number">
+            <summary>
+            Número do cartão
+            </summary>
+        </member>
+        <member name="P:CieloEcommerce.Holder.expiration">
+            <summary>
+            Data de expiração do cartão
+            </summary>
+        </member>
+        <member name="P:CieloEcommerce.Holder.indicator">
+            <summary>
+            Indicador sobre o código CVV do cartão; veja Cielo.Holder.CVV
+            </summary>
+        </member>
+        <member name="P:CieloEcommerce.Holder.cvv">
+            <summary>
+            O CVV do cartão
+            </summary>
+        </member>
+        <member name="P:CieloEcommerce.Holder.name">
+            <summary>
+            O nome do portador
+            </summary>
+        </member>
+        <member name="P:CieloEcommerce.Holder.token">
+            <summary>
+            Token do cartão, caso tenha sido gerado previamente.
+            </summary>
+        </member>
+        <member name="M:CieloEcommerce.Holder.#ctor(System.String)">
+            <summary>
+            Cria uma instância de Cielo.Holder definindo o token do cartão
+            </summary>
+            <param name="token">Token gerado previamente</param>
+        </member>
+        <member name="M:CieloEcommerce.Holder.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            Cria uma instância de Cielo.Holder definindo os dados do cartão. O
+            indicador será definido automaticamente como CVV.INFORMED.
+            </summary>
+            <param name="number">Número do cartão</param>
+            <param name="expirationYear">Ano de expiração do cartão</param>
+            <param name="expirationMonth">Mês de expiração do cartão</param>
+            <param name="cvv">CVV do cartão</param>
+        </member>
+        <member name="M:CieloEcommerce.Holder.#ctor(System.String,System.String,System.String,System.String,CieloEcommerce.Holder.CVV)">
+            <summary>
+            Cria uma instância de Cielo.Holder definindo os dados do cartão.
+            </summary>
+            <param name="number">Número do cartão</param>
+            <param name="expirationYear">Ano de expiração do cartão</param>
+            <param name="expirationMonth">Mês de expiração do cartão</param>
+            <param name="cvv">CVV do cartão</param>
+            <param name="indicator">Indicador do CVV do cartão; ; veja Cielo.Holder.CVV</param>
+        </member>
+        <member name="T:CieloEcommerce.Merchant">
+            <summary>
+            Representa o vendedor ou ponto de venda
+            </summary>
+        </member>
+        <member name="P:CieloEcommerce.Merchant.id">
+            <summary>
+            O merchant id do vendedor
+            </summary>
+        </member>
+        <member name="P:CieloEcommerce.Merchant.key">
+            <summary>
+            A chave de integração do vendedor
+            </summary>
+        </member>
+        <member name="M:CieloEcommerce.Merchant.#ctor(System.String,System.String)">
+            <summary>
+            Cria uma instância de Cielo.Merchant definindo o merchant id e merchant key
+            </summary>
+            <param name="id">O merchant id do vendedor</param>
+            <param name="key">A chave de integração do vendedor</param>
+        </member>
+        <member name="T:CieloEcommerce.Order">
+            <summary>
+            Representa um pedido que a loja enviará para autorização na Cielo
+            </summary>
+        </member>
+        <member name="P:CieloEcommerce.Order.number">
+            <summary>
+            Número único do pedido
+            </summary>
+        </member>
+        <member name="P:CieloEcommerce.Order.total">
+            <summary>
+            Total do pedido em centavos
+            </summary>
+        </member>
+        <member name="P:CieloEcommerce.Order.currency">
+            <summary>
+            Moeda do pedido - 986 para BRL é o padrão
+            </summary>
+        </member>
+        <member name="P:CieloEcommerce.Order.dateTime">
+            <summary>
+            Data e hora do pedido - a hora atual é o padrão
+            </summary>
+        </member>
+        <member name="P:CieloEcommerce.Order.description">
+            <summary>
+            Descrição do pedido
+            </summary>
+        </member>
+        <member name="P:CieloEcommerce.Order.language">
+            <summary>
+            Idioma do pedido - PT é o padrão.
+            </summary>
+        </member>
+        <member name="P:CieloEcommerce.Order.shipping">
+            <summary>
+            Total do frete e despespesas de entrega em centavos
+            </summary>
+        </member>
+        <member name="P:CieloEcommerce.Order.softDescriptor">
+            <summary>
+            Softdescriptor que aparecerá na fatura do cartão do cliente
+            </summary>
+        </member>
+        <member name="M:CieloEcommerce.Order.#ctor(System.String,System.Int32)">
+            <summary>
+            Cria uma instância de Cielo.Order definindo o número do pedido e seu total. A
+            moeda, data e hora e idioma serão definidos em seus padrões.
+            </summary>
+            <param name="number">Número do pedido</param>
+            <param name="total">Total do pedido em centavos</param>
+        </member>
+        <member name="M:CieloEcommerce.Order.#ctor(System.String,System.Int32,System.Int32)">
+            <summary>
+            Cria uma instância de Cielo.Order definindo o número do pedido, total e a moeda. A
+            data e hora e idioma serão definidos em seus padrões.
+            </summary>
+            <param name="number">Número do pedido</param>
+            <param name="total">Total do pedido em centavos</param>
+            <param name="currency">Moeda do pedido</param>
+        </member>
+        <member name="M:CieloEcommerce.Order.#ctor(System.String,System.Int32,System.String)">
+            <summary>
+            Cria uma instância de Cielo.Order definindo o número do pedido, total e data e hora. A
+            moeda e idioma serão definidos em seus padrões.
+            </summary>
+            <param name="number">Número do pedido</param>
+            <param name="total">Total do pedido em centavos</param>
+            <param name="dateTime">Data e hora do pedido</param>
+        </member>
+        <member name="M:CieloEcommerce.Order.#ctor(System.String,System.Int32,System.String,System.Int32)">
+            <summary>
+            Cria uma instância de Cielo.Order definindo os dados do pedido.
+            </summary>
+            <param name="number">Número do pedido</param>
+            <param name="total">Total do pedido em centavos</param>
+            <param name="dateTime">Data e hora do pedido</param>
+            <param name="currency">Moeda do pedido</param>
+        </member>
+        <member name="T:CieloEcommerce.PaymentMethod">
+            <summary>
+            Representa o meio de pagamento escolhido pelo cliente
+            </summary>
+        </member>
+        <member name="F:CieloEcommerce.PaymentMethod.VISA">
+            <summary>
+            Cartão VISA
+            </summary>
+        </member>
+        <member name="F:CieloEcommerce.PaymentMethod.MASTERCARD">
+            <summary>
+            Cartão Mastercard
+            </summary>
+        </member>
+        <member name="F:CieloEcommerce.PaymentMethod.DINERS">
+            <summary>
+            Cartão Diners
+            </summary>
+        </member>
+        <member name="F:CieloEcommerce.PaymentMethod.DISCOVER">
+            <summary>
+            Cartão Discover
+            </summary>
+        </member>
+        <member name="F:CieloEcommerce.PaymentMethod.ELO">
+            <summary>
+            Cartão ELO
+            </summary>
+        </member>
+        <member name="F:CieloEcommerce.PaymentMethod.AMEX">
+            <summary>
+            Cartão AMES
+            </summary>
+        </member>
+        <member name="F:CieloEcommerce.PaymentMethod.JCB">
+            <summary>
+            Cartão JCB
+            </summary>
+        </member>
+        <member name="F:CieloEcommerce.PaymentMethod.AURA">
+            <summary>
+            Cartão AURA
+            </summary>
+        </member>
+        <member name="F:CieloEcommerce.PaymentMethod.CREDITO_A_VISTA">
+            <summary>
+            Para transações em crédito a vista
+            </summary>
+        </member>
+        <member name="F:CieloEcommerce.PaymentMethod.PARCELADO_LOJA">
+            <summary>
+            Para transações parceladas pela loja
+            </summary>
+        </member>
+        <member name="F:CieloEcommerce.PaymentMethod.PARCELADO_ADM">
+            <summary>
+            Para transações parceladas pela administradora
+            </summary>
+        </member>
+        <member name="F:CieloEcommerce.PaymentMethod.DEBITO">
+            <summary>
+            Para transações em débito
+            </summary>
+        </member>
+        <member name="P:CieloEcommerce.PaymentMethod.issuer">
+            <summary>
+            Emissor do cartão
+            </summary>
+            <value>The issuer.</value>
+        </member>
+        <member name="P:CieloEcommerce.PaymentMethod.product">
+            <summary>
+            Produto utilizado; crédito, débito, parcelado
+            </summary>
+        </member>
+        <member name="P:CieloEcommerce.PaymentMethod.installments">
+            <summary>
+            Número de parcelas
+            </summary>
+        </member>
+        <member name="M:CieloEcommerce.PaymentMethod.#ctor(System.String)">
+            <summary>
+            Cria uma instância de Cielo.PaymentMethod definindo o emissor do cartão.
+            </summary>
+            <param name="issuer">Emissor do cartão</param>
+        </member>
+        <member name="M:CieloEcommerce.PaymentMethod.#ctor(System.String,System.String)">
+            <summary>
+            Cria uma instância de Cielo.PaymentMethod definindo o emissor do cartão
+            e o produto utilizado.
+            </summary>
+            <param name="issuer">Emissor do cartão</param>
+            <param name="product">O produto utilizado; crédito, débito, parcelado.</param>
+        </member>
+        <member name="M:CieloEcommerce.PaymentMethod.#ctor(System.String,System.String,System.Int32)">
+            <summary>
+            Cria uma instância de Cielo.PaymentMethod definindo o emissor do cartão, 
+            o produto utilizado e o número de parcelas.
+            </summary>
+            <param name="issuer">Emissor do cartão</param>
+            <param name="product">O produto utilizado; crédito, débito, parcelado.</param>
+            <param name="installments">Número de parcelas</param>
+        </member>
+        <member name="T:CieloEcommerce.Transaction">
+            <summary>
+            Representação de uma transação
+            </summary>
+        </member>
+        <member name="T:CieloEcommerce.Transaction.AuthorizationMethod">
+            <summary>
+            Métodos de autorização possíveis
+            </summary>
+        </member>
+        <member name="F:CieloEcommerce.Transaction.AuthorizationMethod.ONLY_AUTHENTICATE">
+            <summary>
+            Apenas autenticação
+            </summary>
+        </member>
+        <member name="F:CieloEcommerce.Transaction.AuthorizationMethod.AUTHORIZE_IF_AUTHENTICATED">
+            <summary>
+            Autoriza se for autenticado
+            </summary>
+        </member>
+        <member name="F:CieloEcommerce.Transaction.AuthorizationMethod.AUTHORIZE">
+            <summary>
+            Apenas autoriza
+            </summary>
+        </member>
+        <member name="F:CieloEcommerce.Transaction.AuthorizationMethod.AUTHORIZE_WITHOUT_AUTHENTICATION">
+            <summary>
+            Autorização direta
+            </summary>
+        </member>
+        <member name="F:CieloEcommerce.Transaction.AuthorizationMethod.RECURRENCE">
+            <summary>
+            Recorrência
+            </summary>
+        </member>
+        <member name="P:CieloEcommerce.Transaction.tid">
+            <summary>
+            Identificador da transação
+            </summary>
+            <value>The tid.</value>
+        </member>
+        <member name="P:CieloEcommerce.Transaction.pan">
+            <summary>
+            PAN da transação
+            </summary>
+            <value>The pan.</value>
+        </member>
+        <member name="P:CieloEcommerce.Transaction.status">
+            <summary>
+            status da transação
+            </summary>
+            <value>The status.</value>
+        </member>
+        <member name="P:CieloEcommerce.Transaction.authenticationUrl">
+            <summary>
+            URL de autenticação em caso de transações de débito
+            </summary>
+            <value>The authentication URL.</value>
+        </member>
+        <member name="P:CieloEcommerce.Transaction.authorization">
+            <summary>
+            Detalhes da autorização
+            </summary>
+            <value>The authorization.</value>
+        </member>
+        <member name="P:CieloEcommerce.Transaction.authentication">
+            <summary>
+            Detalhes da autenticação
+            </summary>
+            <value>The authentication.</value>
+        </member>
+        <member name="P:CieloEcommerce.Transaction.merchant">
+            <summary>
+            Detalhes do estabelecimento comercial
+            </summary>
+            <value>The merchant.</value>
+        </member>
+        <member name="P:CieloEcommerce.Transaction.holder">
+            <summary>
+            Detalhes do portador do cartão
+            </summary>
+            <value>The holder.</value>
+        </member>
+        <member name="P:CieloEcommerce.Transaction.order">
+            <summary>
+            Detalhes do pedido
+            </summary>
+            <value>The order.</value>
+        </member>
+        <member name="P:CieloEcommerce.Transaction.paymentMethod">
+            <summary>
+            Forma de pagamento
+            </summary>
+            <value>The payment method.</value>
+        </member>
+        <member name="P:CieloEcommerce.Transaction.returnURL">
+            <summary>
+            URL de retorno
+            </summary>
+            <value>The return UR.</value>
+        </member>
+        <member name="P:CieloEcommerce.Transaction.authorize">
+            <summary>
+            Método utilizado para autorização. Veja Cielo.Transaction.AuthorizationMethod
+            </summary>
+            <value>The authorize.</value>
+        </member>
+        <member name="P:CieloEcommerce.Transaction.capture">
+            <summary>
+            Determina se a transação será capturada automaticamente ou de forma manual
+            </summary>
+            <value><c>true</c> if capture; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:CieloEcommerce.Transaction.freeField">
+            <summary>
+            Campo livre
+            </summary>
+            <value>The free field.</value>
+        </member>
+        <member name="P:CieloEcommerce.Transaction.bin">
+            <summary>
+            Primeiros 6 dígitos do cartão
+            </summary>
+            <value>The bin.</value>
+        </member>
+        <member name="F:CieloEcommerce.Transaction.generateToken">
+            <summary>
+            Determina se deverá ser gerado um token para o cartão
+            </summary>
+        </member>
+        <member name="P:CieloEcommerce.Transaction.AVS">
+            <summary>
+            AVS
+            </summary>
+            <value>The AV.</value>
+        </member>
+        <member name="P:CieloEcommerce.Transaction.token">
+            <summary>
+            Detalhes do token
+            </summary>
+            <value>The token.</value>
+        </member>
+        <member name="M:CieloEcommerce.Transaction.#ctor(CieloEcommerce.Merchant,CieloEcommerce.Holder,CieloEcommerce.Order,CieloEcommerce.PaymentMethod,System.String,CieloEcommerce.Transaction.AuthorizationMethod,System.Boolean)">
+            <param name="merchant">Detalhes do estabelecimento comercial</param>
+            <param name="holder">Detalhes do portador do cartão</param>
+            <param name="order">Detalhes do pedido</param>
+            <param name="paymentMethod">Forma de pagamento</param>
+            <param name="returnURL">URL de retorno</param>
+            <param name="authorize">Método de autorização</param>
+            <param name="capture">Determina se a transação deverá ser capturada automaticamente</param>
+        </member>
+        <member name="T:CieloEcommerce.Token">
+            <summary>
+            Representa um token do cartão do cliente para que possa ser armazenado
+            de forma segura para novas compras do mesmo cliente no futuro.
+            </summary>
+        </member>
+        <member name="P:CieloEcommerce.Token.code">
+            <summary>
+            O TOKEN retornado pela Cielo
+            </summary>
+        </member>
+        <member name="P:CieloEcommerce.Token.status">
+            <summary>
+            Status do token
+            </summary>
+        </member>
+        <member name="P:CieloEcommerce.Token.number">
+            <summary>
+            Número do cartão truncado
+            </summary>
+        </member>
+        <member name="T:CieloEcommerce.Authorization">
+            <summary>
+            Representa os dados de uma autorização
+            </summary>
+        </member>
+        <member name="P:CieloEcommerce.Authorization.code">
+            <summary>
+            O código da autorização
+            </summary>
+        </member>
+        <member name="P:CieloEcommerce.Authorization.message">
+            <summary>
+            A mensagem da autorização
+            </summary>
+        </member>
+        <member name="P:CieloEcommerce.Authorization.dateTime">
+            <summary>
+            A data e hora da autorização
+            </summary>
+        </member>
+        <member name="P:CieloEcommerce.Authorization.total">
+            <summary>
+            O total autorizado
+            </summary>
+        </member>
+        <member name="P:CieloEcommerce.Authorization.lr">
+            <summary>
+            O código LR da autorização
+            </summary>
+        </member>
+        <member name="P:CieloEcommerce.Authorization.arp">
+            <summary>
+            O código ARP da autorização
+            </summary>
+        </member>
+        <member name="P:CieloEcommerce.Authorization.nsu">
+            <summary>
+            O código NSU da autorização
+            </summary>
+        </member>
+        <member name="T:CieloEcommerce.Authentication">
+            <summary>
+            Representa os dados de uma autenticação
+            </summary>
+        </member>
+        <member name="P:CieloEcommerce.Authentication.code">
+            <summary>
+            Código da autenticação
+            </summary>
+        </member>
+        <member name="P:CieloEcommerce.Authentication.message">
+            <summary>
+            Mensagem da autenticação
+            </summary>
+        </member>
+        <member name="P:CieloEcommerce.Authentication.dateTime">
+            <summary>
+            Data e hora da autenticação
+            </summary>
+        </member>
+        <member name="P:CieloEcommerce.Authentication.total">
+            <summary>
+            O total autenticado pelo cliente
+            </summary>
+        </member>
+        <member name="P:CieloEcommerce.Authentication.eci">
+            <summary>
+            O código ECI da autenticação
+            </summary>
+        </member>
+    </members>
+</doc>

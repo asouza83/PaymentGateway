@@ -1,0 +1,9 @@
+C:\Users\Alberto\source\repos\PaymentGatewayApi\PaymentGateway.Mocks\bin\Debug\PaymentGateway.Mocks.dll
+C:\Users\Alberto\source\repos\PaymentGatewayApi\PaymentGateway.Mocks\bin\Debug\PaymentGateway.Mocks.pdb
+C:\Users\Alberto\source\repos\PaymentGatewayApi\PaymentGateway.Mocks\bin\Debug\GatewayApiClient.dll
+C:\Users\Alberto\source\repos\PaymentGatewayApi\PaymentGateway.Mocks\bin\Debug\GatewayApiClient.pdb
+C:\Users\Alberto\source\repos\PaymentGatewayApi\PaymentGateway.Mocks\obj\Debug\PaymentGateway.Mocks.csprojAssemblyReference.cache
+C:\Users\Alberto\source\repos\PaymentGatewayApi\PaymentGateway.Mocks\obj\Debug\PaymentGateway.Mocks.csproj.CoreCompileInputs.cache
+C:\Users\Alberto\source\repos\PaymentGatewayApi\PaymentGateway.Mocks\obj\Debug\PaymentGateway.Mocks.csproj.CopyComplete
+C:\Users\Alberto\source\repos\PaymentGatewayApi\PaymentGateway.Mocks\obj\Debug\PaymentGateway.Mocks.dll
+C:\Users\Alberto\source\repos\PaymentGatewayApi\PaymentGateway.Mocks\obj\Debug\PaymentGateway.Mocks.pdb

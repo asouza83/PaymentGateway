@@ -1,0 +1,6 @@
+C:\Users\Alberto\source\repos\PaymentGatewayApi\PaymentGateway.CustomExceptions\bin\Debug\PaymentGateway.CustomExceptions.dll
+C:\Users\Alberto\source\repos\PaymentGatewayApi\PaymentGateway.CustomExceptions\bin\Debug\PaymentGateway.CustomExceptions.pdb
+C:\Users\Alberto\source\repos\PaymentGatewayApi\PaymentGateway.CustomExceptions\obj\Debug\PaymentGateway.CustomExceptions.csprojAssemblyReference.cache
+C:\Users\Alberto\source\repos\PaymentGatewayApi\PaymentGateway.CustomExceptions\obj\Debug\PaymentGateway.CustomExceptions.csproj.CoreCompileInputs.cache
+C:\Users\Alberto\source\repos\PaymentGatewayApi\PaymentGateway.CustomExceptions\obj\Debug\PaymentGateway.CustomExceptions.dll
+C:\Users\Alberto\source\repos\PaymentGatewayApi\PaymentGateway.CustomExceptions\obj\Debug\PaymentGateway.CustomExceptions.pdb

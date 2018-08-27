@@ -1,0 +1,11 @@
+C:\Users\Alberto\source\repos\PaymentGatewayApi\PaymentGateway.Interfaces\bin\Debug\PaymentGateway.Interfaces.dll
+C:\Users\Alberto\source\repos\PaymentGatewayApi\PaymentGateway.Interfaces\bin\Debug\PaymentGateway.Interfaces.pdb
+C:\Users\Alberto\source\repos\PaymentGatewayApi\PaymentGateway.Interfaces\obj\Debug\PaymentGateway.Interfaces.csprojAssemblyReference.cache
+C:\Users\Alberto\source\repos\PaymentGatewayApi\PaymentGateway.Interfaces\obj\Debug\PaymentGateway.Interfaces.csproj.CoreCompileInputs.cache
+C:\Users\Alberto\source\repos\PaymentGatewayApi\PaymentGateway.Interfaces\obj\Debug\PaymentGateway.Interfaces.dll
+C:\Users\Alberto\source\repos\PaymentGatewayApi\PaymentGateway.Interfaces\obj\Debug\PaymentGateway.Interfaces.pdb
+C:\Users\Alberto\source\repos\PaymentGatewayApi\PaymentGateway.Interfaces\bin\Debug\PaymentGateway.DataContracts.dll
+C:\Users\Alberto\source\repos\PaymentGatewayApi\PaymentGateway.Interfaces\bin\Debug\PaymentGateway.DataContracts.pdb
+C:\Users\Alberto\source\repos\PaymentGatewayApi\PaymentGateway.Interfaces\obj\Debug\PaymentGateway.Interfaces.csproj.CopyComplete
+C:\Users\Alberto\source\repos\PaymentGatewayApi\PaymentGateway.Interfaces\bin\Debug\GatewayApiClient.dll
+C:\Users\Alberto\source\repos\PaymentGatewayApi\PaymentGateway.Interfaces\bin\Debug\GatewayApiClient.pdb
